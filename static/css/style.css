@@ -1,0 +1,11 @@
+h1 {
+    font-size: 25px;
+}
+.card_main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.main_card_1 {
+     padding: 20px;
+}
