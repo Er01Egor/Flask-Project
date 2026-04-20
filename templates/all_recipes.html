@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Все блюда</p>
+{% for recipe in recipes %}
+
+<h5>{{ recipe.title }}</h5>
+
+{% endfor %}
 {% endblock %}
