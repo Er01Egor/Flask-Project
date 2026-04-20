@@ -1,8 +1,10 @@
 from flask import Flask, render_template
+from data import db_session
 
 TITLE = 'Smart Kitchen'
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+db_session.global_init("db/recipes.db")
 
 
 @app.route('/')
