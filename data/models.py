@@ -12,12 +12,12 @@ recipe_ingredients = sqlalchemy.Table(
 
 class Recipe(SqlAlchemyBase):
     __tablename__ = 'recipe'
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String(100), nullable=False)
     image_file = sqlalchemy.Column(sqlalchemy.String(100), default='default.jpg')
-    instruction = sqlalchemy.Column(sqlalchemy.Text, nullable=False)
-    cooking_time = sqlalchemy.Column(sqlalchemy.Integer)
-
+    cooking_time = sqlalchemy.Column(sqlalchemy.Column(sqlalchemy.Integer))
+    ingredients_info = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
+    instructions = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
     ingredients = orm.relationship('Ingredient', secondary=recipe_ingredients, backref='recipes')
 
 

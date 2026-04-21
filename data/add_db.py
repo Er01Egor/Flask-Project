@@ -1,6 +1,6 @@
 from data import db_session
 from data.models import Recipe, Ingredient
-
+from dish_values import recipes_list
 
 def add_database():
     db_session.global_init("../db/recipes.db")
