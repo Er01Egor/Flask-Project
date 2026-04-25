@@ -78,3 +78,7 @@ footer p {
 .card-text {
     flex-grow: 1;
 }
+.search_form {
+    padding-top: 40px;
+    padding-right: 90px;
+}
