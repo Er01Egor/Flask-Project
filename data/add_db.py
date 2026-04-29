@@ -1,12 +1,19 @@
 from data import db_session
 from data.models import Recipe, Ingredient
 from data.dish_values import recipes_list
+import os
+
+bb = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(bb, "..", "db", "recipes.db")
 
 
 def add_database():
-    db_session.global_init("../db/recipes.db")
+    db_session.global_init(db_path)
     db_sess = db_session.create_session()
 
+    db_sess.query(Recipe).delete()
+    db_sess.query(Ingredient).delete()
+    db_sess.commit()
     for data in recipes_list:
         recipe = Recipe(
             title=data["title"],
