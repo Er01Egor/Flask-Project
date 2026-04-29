@@ -7,17 +7,17 @@
         <div class="d-flex align-items-end">
             <div class="flex-grow-1 me-2">
                 <textarea name="ingredients" class="form-control" rows="1"
-                          placeholder="Мясо, лук, картофель..."></textarea>
+                          placeholder="Свекла, лук, картофель..."></textarea>
             </div>
             <button type="submit" class="btn btn-success">Найти</button>
         </div>
     </div>
 </form>
 <hr>
-<div class="row">
+<div class="row gx-4 gy-5 mt-5 mb-5">
     {% for recipe in recipes %}
-    <div class="col-md-4">
-        <div class="card mb-4">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
             <img src="/static/img/{{ recipe.image_file }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ recipe.title }}</h5>
