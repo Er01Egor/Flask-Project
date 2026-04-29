@@ -21,5 +21,9 @@ def search_page():
     return render_template('search_page.html', title=TITLE)
 
 
+@app.route('/add_recipes')
+def add_recipes():
+    return render_template('add_recipes.html', title=TITLE)
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
