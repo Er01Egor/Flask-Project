@@ -1,5 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Найти блюда</p>
+<form method="post">
+    <div class="search_form">
+        <h3><label class="form-label">Введите продукты</label></h3>
+        <div class="d-flex align-items-end">
+            <div class="flex-grow-1 me-2">
+                <textarea name="ingredients" class="form-control" rows="1"
+                          placeholder="Свекла, лук, картофель..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Найти</button>
+        </div>
+    </div>
+</form>
+<hr>
+<div class="row gx-4 gy-5 mt-5 mb-5">
+    {% for recipe in recipes %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="/static/img/{{ recipe.image_file }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.title }}</h5>
+                <p class="card-text">Время: {{ recipe.cooking_time }} мин.</p>
+                <a href="#" class="btn btn-outline-primary">Посмотреть рецепт</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    {% if request.method == 'POST' %}
+    <p>Ничего не найдено. Попробуйте другие продукты.</p>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
 {% endblock %}
