@@ -107,3 +107,38 @@ footer p {
 .card-body .btn {
     margin-top: auto;
 }
+.exit-butt {
+    margin-left:15px;
+    padding-left: 25px;
+    padding-right: 27px;
+}
+.search-butt {
+    margin-left:15px;
+    padding-left: 10px;
+}
+.main-vab {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+
+}
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    color: #fff !important;
+    border-bottom: 2px solid #fff;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
