@@ -14,7 +14,9 @@
             </div>
             <img src="/static/img/{{ recipe.image_file }}" class="one_img_card" alt="...">
         </div>
-        <p class="card-text"><small class="text-muted">Время: {{ recipe.cooking_time }} мин.</small></p>
+    </div>
+    <div class="instruct">
+        <p class="card-text">{{ recipe.instructions }}</p>
     </div>
     <div class="card_butt">
         <a href="{{ url_for('index') }}" class="btn btn-info">В избранное</a>
