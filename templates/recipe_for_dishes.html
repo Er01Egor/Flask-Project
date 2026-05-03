@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for recipe in recipes %}
+
+<div class="one_recipe_dish card">
+    <div class="card-body">
+        <h4 class="card-title">{{ recipe.title }}</h4>
+        <div class="img_and_info">
+            <div class="text_info">
+                {% for one_ingredient_info in dish_info %}
+                <p class="card-text">{{ one_ingredient_info }}</p>
+                {% endfor %}
+            </div>
+            <img src="/static/img/{{ recipe.image_file }}" class="one_img_card" alt="...">
+        </div>
+        <p class="card-text"><small class="text-muted">Время: {{ recipe.cooking_time }} мин.</small></p>
+    </div>
+    <div class="card_butt">
+        <a href="{{ url_for('index') }}" class="btn btn-info">В избранное</a>
+        <a href="{{ url_for('search_page') }}" class="btn btn-warning">Назад</a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
