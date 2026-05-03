@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from data import db_session
 from data.models import Recipe, Ingredient
-from data.user import User
+from forms.user import RegisterForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
