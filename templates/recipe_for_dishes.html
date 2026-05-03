@@ -18,9 +18,18 @@
         <p class="card-text">{{ recipe.instructions }}</p>
     </div>
     <div class="card_butt">
+
         <a href="{{ url_for('index') }}" class="btn btn-info">В избранное</a>
-        <a href="{{ url_for('search_page') }}" class="btn btn-warning">Назад</a>
+
+        {% if from_page == 'search' %}
+        <a href="{{ url_for('search_page') }}" class="btn btn-warning">Назад к поиску</a>
+        {% else %}
+        <a href="{{ url_for('all_recipes') }}" class="btn btn-warning">Назад в меню</a>
+        {% endif %}
+
     </div>
+
+
 </div>
 
 {% endblock %}

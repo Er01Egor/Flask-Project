@@ -44,11 +44,12 @@ def add_recipes():
 
 @app.route('/recipe/<int:id_dish>')
 def recipe(id_dish):
+    from_page = request.args.get('from_page', 'all')
     db_sess = db_session.create_session()
     recipe = db_sess.query(Recipe).filter(Recipe.id == id_dish).first()
     if recipe:
         res_info = recipe.ingredients_info.split('\n')
-        return render_template('recipe_for_dishes.html', recipe=recipe, dish_info=res_info)
+        return render_template('recipe_for_dishes.html', recipe=recipe, dish_info=res_info, from_page=from_page)
     return "Рецепт не найден", 404
 
 
