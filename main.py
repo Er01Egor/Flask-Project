@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from data import db_session
 from data.models import Recipe, Ingredient
+from data.user import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -50,7 +51,7 @@ def recipe(id_dish):
         return render_template('recipe_for_dishes.html', recipes=recipes, id_dish=id_dish, dish_info=res_info)
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     pass
 
