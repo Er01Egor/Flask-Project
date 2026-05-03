@@ -142,3 +142,44 @@ footer p {
     margin-left: 20px;
 }
 
+.card_butt {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.one_recipe_dish {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.img_and_info {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.text_info {
+    flex: 1;
+    min-width: 0;
+}
+
+.one_img_card {
+    width: 300px;
+    min-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.card-title {
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.instruct {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
