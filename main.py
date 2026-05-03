@@ -37,6 +37,9 @@ def search_page():
     return render_template('search_page.html', recipes=recipes)
 
 
+@app.route('/add_recipes')
+def add_recipes():
+    return render_template('add_recipes.html')
 @app.route('/recipe/<int:id_dish>')
 def recipe(id_dish):
     id_dish_list = []
