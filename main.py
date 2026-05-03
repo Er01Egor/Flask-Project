@@ -39,7 +39,7 @@ def search_page():
 
 @app.route('/add_recipes')
 def add_recipes():
-    return render_template('add_recipes.html', title=TITLE)
+    return render_template('add_recipes.html')
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
