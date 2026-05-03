@@ -50,5 +50,15 @@ def recipe(id_dish):
         return render_template('recipe_for_dishes.html', recipes=recipes, id_dish=id_dish, dish_info=res_info)
 
 
+@app.route('/register')
+def register():
+    pass
+
+
+@app.route('/login')
+def login():
+    pass
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
