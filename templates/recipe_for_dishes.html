@@ -19,7 +19,7 @@
     </div>
     <div class="card_butt">
 
-        <a href="{{ url_for('index') }}" class="btn btn-info">В избранное</a>
+        <a href="{{ url_for('add_to_favourite', id_to_fav=recipe.id) }}" class="btn btn-info">В избранное</a>
 
         {% if from_page == 'search' %}
         <a href="{{ url_for('search_page') }}" class="btn btn-warning">Назад к поиску</a>

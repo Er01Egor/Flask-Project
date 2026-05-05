@@ -1,10 +1,22 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from data import db_session
 from data.models import Recipe, Ingredient
+from flask_login import LoginManager, current_user
+
+from data.user import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 db_session.global_init("db/recipes.db")
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
 
 
 @app.route('/')
@@ -51,6 +63,25 @@ def recipe(id_dish):
         res_info = recipe.ingredients_info.split('\n')
         return render_template('recipe_for_dishes.html', recipe=recipe, dish_info=res_info, from_page=from_page)
     return "Рецепт не найден", 404
+
+
+@app.route('/favourites')
+def favourites():
+    if current_user.is_authenticated:
+        return render_template('favourites.html')
+    else:
+        return render_template('not_registered_favourites.html')
+
+
+@app.route('/add_to_favourite/<int:id_to_fav>')
+def add_to_favourite(id_to_fav):
+    if not current_user.is_authenticated:
+        return render_template('not_registered_favourites.html')
+
+    db_sess = db_session.create_session()
+    recipe = db_sess.query(Recipe).filter(Recipe.id == id_to_fav).first()
+    # не готово
+    return redirect('/favourites')
 
 
 if __name__ == '__main__':
