@@ -1,6 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 shadow p-4 rounded bg-light">
+            <h2 class="text-center mb-4">{{ title }}</h2>
 
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
 
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control", type="email") }}
+                    {% for error in form.email.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control", type="password") }}
+                    {% for error in form.password.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password_again.label(class="form-label") }}
+                    {{ form.password_again(class="form-control", type="password") }}
+                    {% for error in form.password_again.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                {% if message %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+
+                <div class="d-grid mt-4">
+                    {{ form.submit(class="btn btn-success") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

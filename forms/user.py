@@ -4,3 +4,6 @@ from wtforms.validators import DataRequired, Email, EqualTo
 
 class RegisterForm(FlaskForm):
     pass
+
+class LoginForm(FlaskForm):
+    pass
