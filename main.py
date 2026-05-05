@@ -83,6 +83,7 @@ def register():
     return render_template('registration.html', title='Регистрация', form=form)
 
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
