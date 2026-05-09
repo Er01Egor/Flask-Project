@@ -56,12 +56,16 @@ footer a {
     color: #ebf2f2;
     text-decoration: none;
 }
+footer a:hover {
+    text-decoration: underline !important;
+    color: #28a745 !important;
+}
 
 footer a:hover {
     text-decoration: underline;
 }
 footer p {
-    padding: 13px;
+    padding: 8px;
     margin: 8px 0;
     font-size: 13px;
 }
@@ -139,7 +143,7 @@ footer p {
 }
 
 .nav-item {
-    margin-left: 20px;
+    margin-left: 5px;
 }
 
 .card_butt {
@@ -186,4 +190,11 @@ footer p {
 .registr_butt {
     margin-left: 50px;
     margin-right:15px;
+}
+.favour_nav {
+    margin-right: 40px;
+}
+.site_name_main {
+    color: #ffffff; !important;
+    text-decoration: none
 }

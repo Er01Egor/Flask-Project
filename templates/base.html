@@ -14,16 +14,20 @@
 <header>
     <nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-success p-3">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" style="height: 40px;">
-        <h1>Smart Kitchen</h1>
+        <h1><a class="site_name_main" href="{{ url_for('index') }}"> Smart Kitchen</a></h1>
         <ul class="main-vab nav nav-underline ms-auto">
             <li class="nav-item">
                 <a class="nav-link {{ 'active' if request.endpoint == 'index' else '' }}"
                    href="{{ url_for('index') }}">Главная</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ 'active' if request.endpoint == 'favourites' else '' }}"
-                   href="{{ url_for('favourites') }}">Избранное</a>
+                <div class="favour_nav">
+                    <a class="nav-link {{ 'active' if request.endpoint == 'favourites' else '' }}"
+                       href="{{ url_for('favourites') }}">Избранное</a>
+                </div>
             </li>
+
         </ul>
         <nav>
             {% if current_user.is_authenticated %}
@@ -42,11 +46,25 @@
 <main role="main" class="container" style="padding-top: 100px;">
     {% block content %}{% endblock %}
 </main>
-<footer>
-    <div class="footer-text">
-        <p>&copy; 2026 Smart Kitchen. Все права защищены.</p>
-        <p><a href="https://www.flaticon.com/free-icons/refrigerator" title="refrigerator icons">Refrigerator icons
-            created by smashingstocks - Flaticon</a></p>
+<footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-1">&copy; 2026 <strong>Smart Kitchen</strong>. Все права защищены.</p>
+                <small class="text-muted">
+                    Refrigerator icons created by
+                    <a href="https://www.flaticon.com/free-icons/refrigerator" title="refrigerator icons"
+                       class="text-muted decoration-none">smashingstocks - Flaticon</a>
+                </small>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <h5 class="mb-2">Контакты:</h5>
+                <a href="tel:+79520257434" class="text-white text-decoration-none">
+                    <i class="bi bi-telephone"></i> +7 (952) 025-74-34
+                </a>
+                <br>
+            </div>
+        </div>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
