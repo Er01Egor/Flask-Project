@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect
+from flask_restful import Api
+from api import recipes_resources
 from data import db_session
 from data.models import Recipe, Ingredient
 from data.user import User
@@ -8,8 +10,13 @@ from flask_login import login_user, logout_user, login_required
 from flask_login import LoginManager, current_user
 
 app = Flask(__name__)
+app.json.ensure_ascii = False
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 db_session.global_init("db/recipes.db")
+
+api = Api(app)
+api.add_resource(recipes_resources.RecipesListResource, '/api/recipes')
+api.add_resource(recipes_resources.RecipesResource, '/api/recipes/<int:recipe_id>')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -113,7 +120,6 @@ def register():
         return redirect('/login')
 
     return render_template('registration.html', title='Регистрация', form=form)
-
 
 
 @app.route('/login', methods=['GET', 'POST'])

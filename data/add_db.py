@@ -3,6 +3,12 @@ from data.models import Recipe, Ingredient
 from data.dish_values import recipes_list
 import os
 
+folder_db = '../db'
+if not os.path.exists(folder_db):
+    os.makedirs(folder_db)
+else:
+    print(f'Папка {folder_db} уже существует')
+
 bb = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(bb, "..", "db", "recipes.db")
 
