@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for recipe in recipes %}
 
 <div class="one_recipe_dish card">
     <div class="card-body">
@@ -19,10 +18,18 @@
         <p class="card-text">{{ recipe.instructions }}</p>
     </div>
     <div class="card_butt">
-        <a href="{{ url_for('index') }}" class="btn btn-info">В избранное</a>
-        <a href="{{ url_for('search_page') }}" class="btn btn-warning">Назад</a>
+
+        <a href="{{ url_for('add_to_favourite', id_to_fav=recipe.id) }}" class="btn btn-info">В избранное</a>
+
+        {% if from_page == 'search' %}
+        <a href="{{ url_for('search_page') }}" class="btn btn-warning">Назад к поиску</a>
+        {% else %}
+        <a href="{{ url_for('all_recipes') }}" class="btn btn-warning">Назад в меню</a>
+        {% endif %}
+
     </div>
+
+
 </div>
 
-{% endfor %}
 {% endblock %}

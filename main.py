@@ -10,6 +10,15 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 db_session.global_init("db/recipes.db")
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
+
 
 @app.route('/')
 @app.route('/index')
@@ -41,17 +50,39 @@ def search_page():
     return render_template('search_page.html', recipes=recipes)
 
 
+@app.route('/add_recipes')
+def add_recipes():
+    return render_template('add_recipes.html')
+
+
 @app.route('/recipe/<int:id_dish>')
 def recipe(id_dish):
-    id_dish_list = []
-    id_dish_list.append(id_dish)
-    print(id_dish_list)
+    from_page = request.args.get('from_page', 'all')
+    db_sess = db_session.create_session()
+    recipe = db_sess.query(Recipe).filter(Recipe.id == id_dish).first()
+    if recipe:
+        res_info = recipe.ingredients_info.split('\n')
+        return render_template('recipe_for_dishes.html', recipe=recipe, dish_info=res_info, from_page=from_page)
+    return "Рецепт не найден", 404
+
+
+@app.route('/favourites')
+def favourites():
+    if current_user.is_authenticated:
+        return render_template('favourites.html')
+    else:
+        return render_template('not_registered_favourites.html')
+
+
+@app.route('/add_to_favourite/<int:id_to_fav>')
+def add_to_favourite(id_to_fav):
+    if not current_user.is_authenticated:
+        return render_template('not_registered_favourites.html')
 
     db_sess = db_session.create_session()
-    recipes = db_sess.query(Recipe).join(Recipe.ingredients).filter(Recipe.id.in_(id_dish_list)).distinct().all()
-    for elem in recipes:
-        res_info = elem.ingredients_info.split('\n')
-        return render_template('recipe_for_dishes.html', recipes=recipes, id_dish=id_dish, dish_info=res_info)
+    recipe = db_sess.query(Recipe).filter(Recipe.id == id_to_fav).first()
+    # не готово
+    return redirect('/favourites')
 
 
 @app.route('/register', methods=['GET', 'POST'])
