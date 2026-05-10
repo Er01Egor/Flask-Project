@@ -45,22 +45,28 @@ def all_recipes():
 def search_page():
     recipes = []
     gap_product = []
+    user_input = ''
     if request.method == 'POST':
-        list_products = request.form.get('ingredients')
-        if list_products:
-            for line in list_products.split(','):
+        user_input = request.form.get('ingredients', '')
+        if user_input:
+            for line in user_input.split(','):
                 product = line.strip().capitalize()
                 gap_product.append(product)
         print(gap_product)
     db_sess = db_session.create_session()
 
     recipes = db_sess.query(Recipe).join(Recipe.ingredients).filter(Ingredient.name.in_(gap_product)).distinct().all()
-    return render_template('search_page.html', recipes=recipes)
+    return render_template('search_page.html', recipes=recipes, value=user_input)
 
 
 @app.route('/add_recipes')
 def add_recipes():
     return render_template('add_recipes.html')
+
+
+@app.route('/add_recipe_process')
+def add_recipe_process():
+    return render_template('add_recipe_proc.html')
 
 
 @app.route('/recipe/<int:id_dish>')

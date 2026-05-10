@@ -65,13 +65,12 @@
     <label>Название блюда *</label>
     <input type="text" name="name" required>
 
-    <label>Необходимые продукты (ингредиенты)</label>
+    <label>Необходимые продукты *</label>
     <textarea name="ingredients" rows="3" placeholder="например: картофель, лук, морковь, сметана"></textarea>
 
-    <label>Описание приготовления (необязательно)</label>
+    <label>Описание приготовления *</label>
     <textarea name="description" rows="3" placeholder="краткий рецепт или примечание"></textarea>
-
-    <button type="submit">Добавить блюдо</button>
+    <a href="{{ url_for('add_recipe_process') }}" class="btn btn-success">Добавить блюдо</a>
 </form>
 
 
