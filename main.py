@@ -7,6 +7,7 @@ from data.user import User
 from forms.user import RegisterForm
 from forms.user import LoginForm
 from flask_login import login_user, logout_user, login_required
+from flask import redirect, url_for, abort
 from flask_login import LoginManager, current_user
 
 app = Flask(__name__)
@@ -25,7 +26,7 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
-    return db_sess.query(User).get(user_id)
+    return db_sess.get(User, user_id)
 
 
 @app.route('/')
@@ -150,6 +151,24 @@ def login():
 def logout():
     logout_user()
     return redirect('/')
+
+
+@app.route('/account/<int:user_id>')
+# @login_required
+def personal_account(user_id):
+    """
+    if current_user.id != user_id:
+        return redirect(url_for('personal_account', user_id=current_user.id))
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.id == user_id).first()
+    if not user:
+        abort(404)
+    """
+    if current_user.is_authenticated:
+        return render_template('personal_account.html', title='Личный кабинет', user_info=user_id)
+    else:
+        return render_template('not_registered.html')
+
 
 
 if __name__ == '__main__':
