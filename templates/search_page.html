@@ -7,9 +7,9 @@
         <div class="d-flex align-items-end">
             <div class="flex-grow-1 me-2">
                 <textarea name="ingredients" class="form-control" rows="1"
-                          placeholder="Свекла, лук, картофель..."></textarea>
+                          placeholder="Свекла, лук, картофель...">{{ value }}</textarea>
             </div>
-            <button type="submit" class="btn btn-success">Найти</button>
+            <button type="submit" class="search-butt btn btn-success">Найти</button>
         </div>
     </div>
 </form>
@@ -22,7 +22,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{ recipe.title }}</h5>
                 <p class="card-text">Время: {{ recipe.cooking_time }} мин.</p>
-                <a href="#" class="btn btn-outline-primary">Посмотреть рецепт</a>
+                <a href="{{ url_for('recipe', id_dish=recipe.id, from_page='search') }}"
+                   class="btn btn-outline-warning">Посмотреть рецепт</a>
             </div>
         </div>
     </div>

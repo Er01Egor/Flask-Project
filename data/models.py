@@ -1,6 +1,7 @@
 import sqlalchemy
 from .db_session import SqlAlchemyBase
 import sqlalchemy.orm as orm
+from sqlalchemy_serializer import SerializerMixin
 
 recipe_ingredients = sqlalchemy.Table(
     'recipe_ingredients',
@@ -10,7 +11,7 @@ recipe_ingredients = sqlalchemy.Table(
 )
 
 
-class Recipe(SqlAlchemyBase):
+class Recipe(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'recipe'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String(100), nullable=False)
@@ -21,7 +22,7 @@ class Recipe(SqlAlchemyBase):
     ingredients = orm.relationship('Ingredient', secondary=recipe_ingredients, backref='recipes')
 
 
-class Ingredient(SqlAlchemyBase):
+class Ingredient(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'ingredient'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     name = sqlalchemy.Column(sqlalchemy.String(50), unique=True, nullable=False)
