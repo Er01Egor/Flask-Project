@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление блюд — список продуктов</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        .add_dish_h1 {
+            color: #333;
+        }
+        h2 {
+            color: #333;
+            }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1 class="add_dish_h1">Добавление нового блюда</h1>
+<form method="POST">
+    <label>Название блюда *</label>
+    <input type="text" name="name" required>
+
+    <label>Необходимые продукты *</label>
+    <textarea name="ingredients" rows="3" placeholder="например: картофель, лук, морковь, сметана"></textarea>
+
+    <label>Описание приготовления *</label>
+    <textarea name="description" rows="3" placeholder="краткий рецепт или примечание"></textarea>
+    <a href="{{ url_for('add_recipe_process') }}" class="btn btn-success">Добавить блюдо</a>
+</form>
+
+
+</body>
+</html>
+{% endblock %}
