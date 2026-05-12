@@ -27,7 +27,6 @@
             </li>
 
             {% if current_user.is_authenticated %}
-            <!-- Личный кабинет показываем ТОЛЬКО если пользователь вошел -->
             <li class="nav-item">
                 <a class="nav-link {{ 'active' if request.endpoint == 'personal_account' else '' }}"
                    href="{{ url_for('personal_account', user_id=current_user.id) }}">Личный кабинет</a>
@@ -36,7 +35,6 @@
                 <a href="/logout" class="btn btn-primary btn-sm">Выйти ({{ current_user.name }})</a>
             </li>
             {% else %}
-            <!-- Если гость — показываем только кнопки входа/регистрации -->
             <li class="nav-item ms-3">
                 <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Регистрация</a>
             </li>
