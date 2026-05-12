@@ -84,7 +84,8 @@ def recipe(id_dish):
 @app.route('/favourites')
 def favourites():
     if current_user.is_authenticated:
-        return render_template('favourites.html')
+        recipes = current_user.favorites
+        return render_template('favourites.html', recipes=recipes)
     else:
         return render_template('not_registered_favourites.html')
 
@@ -96,7 +97,16 @@ def add_to_favourite(id_to_fav):
 
     db_sess = db_session.create_session()
     recipe = db_sess.query(Recipe).filter(Recipe.id == id_to_fav).first()
-    # не готово
+    user = db_sess.query(User).filter(User.id == current_user.id).first()
+
+    if recipe and user:
+        if recipe not in user.favorites:
+            user.favorites.append(recipe)
+            db_sess.commit()
+            print(f"Рецепт {id_to_fav} добавлен в избранное пользователю {user.id}")
+        else:
+            print("Рецепт уже в избранном")
+
     return redirect('/favourites')
 
 
@@ -154,21 +164,16 @@ def logout():
 
 
 @app.route('/account/<int:user_id>')
-# @login_required
 def personal_account(user_id):
-    """
+    if not current_user.is_authenticated:
+        return render_template('not_registered.html')
     if current_user.id != user_id:
         return redirect(url_for('personal_account', user_id=current_user.id))
     db_sess = db_session.create_session()
-    user = db_sess.query(User).filter(User.id == user_id).first()
+    user = db_sess.get(User, user_id)
     if not user:
         abort(404)
-    """
-    if current_user.is_authenticated:
-        return render_template('personal_account.html', title='Личный кабинет', user_info=user_id)
-    else:
-        return render_template('not_registered.html')
-
+    return render_template('personal_account.html', title='Личный кабинет', user=user)
 
 
 if __name__ == '__main__':

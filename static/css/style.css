@@ -209,3 +209,7 @@ footer p {
     transform: translate(-50%, -50%);
     z-index: 9999;
 }
+.register_style {
+    margin-top:30px;
+    margin-bottom:40px;
+}
