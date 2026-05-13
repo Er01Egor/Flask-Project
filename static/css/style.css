@@ -213,3 +213,7 @@ footer p {
     margin-top:30px;
     margin-bottom:40px;
 }
+
+.card-subtitle {
+    color: #38f53f;
+}
