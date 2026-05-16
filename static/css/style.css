@@ -217,3 +217,18 @@ footer p {
 .card-subtitle {
     color: #38f53f;
 }
+.img-fluid {
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+}
+.p-4 {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+.recipe_card {
+    margin-bottom: 200px;
+}
+.sticky-top {
+    top: 100px;
+}
