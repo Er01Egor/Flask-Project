@@ -47,10 +47,16 @@ cd Flask-Project
 pip install -r requirements.txt
 ```
 
+- **Создаем БД:**
+
+```
+python -m data.add_db
+```
+
 - **Запускаем проект:**
 
 ```
-python main.py run
+python main.py
 ```
 
 > **В любом браузере вводим:**
@@ -58,9 +64,6 @@ python main.py run
 ```
 http://127.0.0.1:8080
 ```
-
-
-
 
 ## For whom the project is intended
 
@@ -107,6 +110,18 @@ cd Flask-Project
 
 ```
 pip install -r requirements.txt
+```
+
+- **Создаем БД:**
+
+```
+python -m data.add_db
+```
+
+- **Create a database:**
+
+```
+python -m data.add_db
 ```
 
 - **Launching the project:**

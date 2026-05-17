@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="text-center mb-4">{{ title }}</h3>
+<div class="card" style="width: 45rem;">
+    <div class="card-body">
+        <h5 class="card-title">Личный кабинет пользователя: {{ user.name }}</h5>
+        <h6 class="card-subtitle mb-3 text-body-success">онлайн</h6>
+        <p class="card-text">Количество авторских блюд пользователя: 0</p>
+    </div>
+</div>
+{% endblock %}
